@@ -16,6 +16,7 @@
 <script>
   import { thirdPartySite } from "../config";
   export default {
+    name: "About",
     data() {
       return {
         thirdPartySite,

@@ -27,7 +27,9 @@
   import "github-markdown-css/github-markdown.css";
   import "highlight.js/styles/github.css";
   import { getIssue } from "../utils/githubApi";
+
   export default {
+    name: "Post",
     data() {
       return {
         issue: "",
@@ -67,7 +69,9 @@
         //给html中的h加id
         let tocHtml = htmlContent.match(/<(h\d).*?>.*?<\/h\d>/g);
         tocHtml.forEach((item, index) => {
-          let _toc = `<div id='${catalogs[index].title}'>${item} </div>`;
+          // let _toc = `<div id='${catalogs[index].title}'>${item} </div>`;
+          let _toc = item.replace(/".*"/g, `"${catalogs[index].title}"`);
+
           htmlContent = htmlContent.replace(item, _toc);
         });
         return { htmlContent, catalogs };

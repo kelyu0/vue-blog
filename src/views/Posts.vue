@@ -21,6 +21,7 @@
   import { getIssues } from "../utils/githubApi";
   import { mapGetters } from "vuex";
   export default {
+    name: "Posts",
     data() {
       return {
         totalNum: 0,

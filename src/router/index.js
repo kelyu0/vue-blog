@@ -17,27 +17,21 @@ const routes = [
     component: () => import("../views/About.vue"),
   },
   {
-    path: "/Post/:number",
+    path: "/post/:number",
     name: "Post",
     component: () => import("../views/Post.vue"),
   },
   {
     path: "*",
-    redirect: "/Posts",
+    redirect: "/",
   },
 ];
 
 const router = new VueRouter({
   routes,
+  mode: "history",
 });
 
-// router.beforeEach(function() {
-//   NProgress.start();
-// });
-// router.afterEach(function() {
-//   NProgress.done();
-//   NProgress.remove();
-// });
 router.beforeEach((to, from, next) => {
   NProgress.start();
   next();
@@ -45,4 +39,5 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   NProgress.done();
 });
+
 export default router;
