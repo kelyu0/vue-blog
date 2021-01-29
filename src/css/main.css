@@ -19,3 +19,20 @@ a:hover {
   background: #44a340;
   text-decoration: none;
 }
+.article {
+  max-width: 750px;
+  margin: auto;
+  margin-top: 30px;
+  padding: 0 15px 20px 15px;
+  line-height: 26px;
+  color: #555;
+  word-wrap: break-word;
+}
+
+#nprogress .bar {
+  background: #44a340;
+}
+#nprogress .spinner-icon {
+  border-top-color: #44a340;
+  border-left-color: #44a340;
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <!-- <h2 class="category">All</h2> -->
+    <h2 class="category">{{ activeLabel || "All" }}</h2>
     <ul ref="issueList">
       <li class="list-post" v-for="issue in issues" :key="issue.id">
         <div class="list-title">
@@ -11,37 +11,36 @@
         <span class="list-label" v-for="label in issue.labels" :key="label.id">
           {{ label.name }}
         </span>
-        <span class="list-date">{{ issue.created_at.substring(0, 10) }}</span>
+        <span class="list-date">{{ issue.created_at.slice(0, 10) }}</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import { config } from "../config";
+  import { getIssues } from "../utils/githubApi";
+  import { mapGetters } from "vuex";
   export default {
     data() {
       return {
         totalNum: 0,
         issues: [],
         isNoData: false,
+        date: "",
       };
     },
-    mounted() {
-      this.$nextTick(() => {
-        this.getIssues();
-      });
+    async mounted() {
+      this.issues = await getIssues({ label: this.activeLabel });
     },
-    methods: {
-      getIssues() {
-        const url = `https://api.github.com/repos/${config.githubUserName}/${config.githubRepo}/issues`;
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            this.issues = data.filter((issue) => issue.state === "open");
-          });
+    computed: {
+      ...mapGetters(["activeLabel"]),
+    },
+    watch: {
+      async activeLabel() {
+        this.issues = await getIssues({ label: this.activeLabel });
       },
     },
+    methods: {},
   };
 </script>
 
@@ -54,11 +53,19 @@
     margin: auto;
     padding: 0 10px 50px 10px;
   }
-
-  .list ul:nth-child(1) {
+  .category {
+    color: #666;
+    text-align: center;
+    font-weight: 300;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 30px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  /* .list ul:nth-child(1) {
     margin-top: 60px;
     border-top: 1px solid #e5e5e5;
-  }
+  } */
   .list-post {
     padding: 0 5px;
     height: 45px;

@@ -26,8 +26,7 @@
   import marked from "marked";
   import "github-markdown-css/github-markdown.css";
   import "highlight.js/styles/github.css";
-  // import "highlight.js/styles/zenburn.css";
-
+  import { getIssue } from "../utils/githubApi";
   export default {
     data() {
       return {
@@ -37,10 +36,16 @@
         catalogs: "",
       };
     },
-    mounted() {
-      this.issue = this.$route.params.issue;
+    async mounted() {
+      //fetch data
+      if (this.$route.params.issue) {
+        this.issue = this.$route.params.issue;
+      } else {
+        const id = this.$route.path.split("/").pop();
+        this.issue = await getIssue(id);
+      }
+      //display
       this.date = this.issue.created_at.slice(0, 10);
-
       marked.setOptions({
         highlight: (code) => hljs.highlightAuto(code).value,
       });
@@ -84,16 +89,16 @@
     flex-grow: 1;
   }
 
-  .article {
-    max-width: 650px;
+  /* .article {
+    max-width: 750px;
     margin: auto;
     padding: 0 15px 20px 15px;
     line-height: 26px;
     color: #555;
     word-wrap: break-word;
-  }
+  } */
   .article-title {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     color: #ff001f;
     font-size: 22px;
     text-align: center;

@@ -1,3 +1,4 @@
+import NProgress from "nprogress";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Posts from "../views/Posts.vue";
@@ -30,4 +31,18 @@ const router = new VueRouter({
   routes,
 });
 
+// router.beforeEach(function() {
+//   NProgress.start();
+// });
+// router.afterEach(function() {
+//   NProgress.done();
+//   NProgress.remove();
+// });
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  next();
+});
+router.afterEach(() => {
+  NProgress.done();
+});
 export default router;
