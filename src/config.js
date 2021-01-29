@@ -18,5 +18,15 @@ const thirdPartySite = [
   },
   //Other sites ...
 ];
+const project = {
+  vueIssueBlog: {
+    code: "https://github.com/kelyu0/vue-issue-blog",
+    demo: "https://kelyu0.github.io/vue-issue-blog",
+  },
+  reactIssueBlog: {
+    code: "https://github.com/kelyu0/react-issue-blog",
+    demo: "https://kelyu0.github.io/react-issue-blog",
+  },
+};
 //  };
-export { githubRepo, thirdPartySite };
+export { githubRepo, thirdPartySite, project };

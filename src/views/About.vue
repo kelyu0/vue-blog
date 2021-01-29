@@ -9,17 +9,32 @@
     <br />
 
     <h3>Blog Theme</h3>
-    <a href="https://github.com/kelyu0/vue-issue-blog"> vue-issue-blog</a>
+    <br />
+
+    <h4>code</h4>
+    <div>
+      <a :href="project.vueIssueBlog.code"> vue-issue-blog</a>
+      <br />
+      <a :href="project.reactIssueBlog.code"> react-issue-blog</a>
+    </div>
+    <br />
+    <h4>demo</h4>
+    <div>
+      <a :href="project.vueIssueBlog.demo"> Version Vue </a>
+      <br />
+      <a :href="project.reactIssueBlog.demo"> Version React </a>
+    </div>
   </div>
 </template>
 
 <script>
-  import { thirdPartySite } from "../config";
+  import { thirdPartySite, project } from "../config";
   export default {
     name: "About",
     data() {
       return {
         thirdPartySite,
+        project,
       };
     },
   };

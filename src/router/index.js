@@ -28,6 +28,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  base: "/vue-issue-blog",
   routes,
   mode: "history",
 });
