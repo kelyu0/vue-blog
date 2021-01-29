@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "github-markdown-css": "^4.0.0",
+    "highlight.js": "^10.5.0",
+    "marked": "^1.2.8",
     "vue": "^2.6.11",
     "vue-router": "^3.5.1"
   },

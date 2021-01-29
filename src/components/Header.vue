@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <span class="header-logo">KK's Blog</span>
-    <input type="text" class="header-search" v-model="keyword" @keyup.enter="getIssues()" placeholder="文章标题或内容..." />
+    <router-link class="header-logo" :to="{ name: 'Posts' }">KK's Blog</router-link>
+    <input type="text" class="header-search" v-model="keyword" @keyup.enter="getIssues()" placeholder="输入文章标题或内容，按回车搜索..." />
     <div class="header-dropdown">
       <button class="dropdown-button">Tags</button>
       <div class="dropdown-content">
@@ -32,21 +32,23 @@
     /* flex-basis: auto; */
     /* justify-content: space-between; */
     border-bottom: 1px solid #eeeeee;
-    padding: 10px;
+    padding: 6px;
     align-items: center;
     box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.1);
   }
   .header-logo {
     flex: 5 1 auto;
     margin-left: 40px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: start;
     color: #4b595f;
     font-weight: bold;
   }
-
+  .header-logo:hover {
+    background: transparent;
+  }
   .header-search {
-    flex: 1 1 69px;
+    flex: 1 1 auto;
     margin-right: 30px;
     height: 16px;
     padding: 10px;
